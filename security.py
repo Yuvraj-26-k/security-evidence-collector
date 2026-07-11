@@ -1,13 +1,29 @@
 import os 
+import time
 
 while True:
-    print("="*35)
-    print("Security Evidence collector".upper())
-    print("="*35)
+    for i in range(40):
+        print("=",end="")
+        time.sleep(0.1)
+    print()
+    
+    letters="Security EvIdence Collector v2.0".upper()
+    
+    for letter in letters:
+        print(letter,end="")
+        time.sleep(0.1)
+    print()
+    
+    for x in range(40):
+        print("=",end="")
+        time.sleep(0.1)
+    print()
+    
     print("Scans directory for Important files(exe/txt/log/.....):-")
     print("[1] Scans Current directory:")
     print("[2] Scans Custom Directory:")
     print("[3] Exit")
+
 
     try:
      choice1=int(input("Enter your choice:"))
@@ -17,7 +33,12 @@ while True:
     
     if choice1 == 1:
         files=os.listdir()
-        print("\nScanning current Directory ...... \n")
+        
+        print("Scanning current Directory",end="")
+        
+        for i in range(6):
+            print(".",end="")
+            time.sleep(1)
         
         count=1
         s_count=0
@@ -74,7 +95,11 @@ while True:
         
         file_2=os.listdir()
         
-        print("\nScanning custom directory\n")
+        print("Scanning custom Directory",end="")
+        
+        for j in range(6):
+            print(".",end="")
+            time.sleep(1)
             
         count1=1
         s_count2=0
@@ -125,7 +150,11 @@ while True:
             print("No problem!")
     
     elif choice1 ==  3:
-        print("Exiting.....")    
+        print("\nExiting",end="")   
+        
+        for k in range(3):
+            print(".",end="")
+            time.sleep(1) 
         break
     
     else:
