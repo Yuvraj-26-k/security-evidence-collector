@@ -4,22 +4,47 @@ import time
 while True:
     for i in range(40):
         print("=",end="")
-        time.sleep(0.1)
+        time.sleep(0.080)
     print()
     
-    letters="Security EvIdence Collector v2.0".upper()
+    letters="Security EvIdence Collector".upper().center(40)
     
     for letter in letters:
         print(letter,end="")
-        time.sleep(0.1)
+        time.sleep(0.080)
     print()
     
     for x in range(40):
         print("=",end="")
-        time.sleep(0.1)
+        time.sleep(0.080)
     print()
     
-    print("Scans directory for Important files(exe/txt/log/.....):-")
+    print("Initializing",end="")
+    
+    for i in range(8):
+        print(".",end="",flush=True)
+        time.sleep(0.2)
+        
+    print("\nLoading Modules",end="") 
+    for i in range(8):
+        print(".",end="",flush=True)
+        time.sleep(0.2)
+        
+        
+    print("\nChecking Scanner",end="")
+    for i in range(8):
+        print(".",end="",flush=True)
+        time.sleep(0.2)
+        
+    print("\nPreparing Report Engine",end="")
+    for i in range(8):
+           print(".",end="",flush=True)
+           time.sleep(0.2)
+    print('\n---------------------------------')   
+    
+    #------Main program --------
+    
+    print("\n> Scans directory for Important files(exe/txt/log/.....):-")
     print("[1] Scans Current directory:")
     print("[2] Scans Custom Directory:")
     print("[3] Exit")
@@ -34,10 +59,10 @@ while True:
     if choice1 == 1:
         files=os.listdir()
         
-        print("Scanning current Directory",end="")
+        scan=['|','/','-','\\']
         
-        for i in range(6):
-            print(".",end="")
+        for i in range(10):
+            print("\rScanning current Directory",scan[i%len(scan)],end="",flush=True)
             time.sleep(1)
         
         count=1
@@ -51,7 +76,7 @@ while True:
                 save=f""" [{count}] Name:{file} \n 
                 Size : {size} Bytes \n
                 Location : {loc}"""
-                print(save)
+                print("\n",save)
                 
                 report+=save
 
@@ -95,10 +120,10 @@ while True:
         
         file_2=os.listdir()
         
-        print("Scanning custom Directory",end="")
+        scan=['|','/','-','\\']
         
-        for j in range(6):
-            print(".",end="")
+        for i in range(10):
+            print("\rScanning custom Directory",scan[i%len(scan)],end="",flush=True)
             time.sleep(1)
             
         count1=1
@@ -134,7 +159,7 @@ while True:
             
         if choicex == "y":
             try:
-             file2_name=("Enter the name of file:-")
+             file2_name=input("Enter the name of file:-")
             except ValueError:
                 print("Enter valid value !")
                 if not file2_name.endswith(".txt"):
@@ -144,7 +169,7 @@ while True:
             file2.close()
             print("="*45)
             print("Report saved successfully!")
-            print("File Name:",file1_name)
+            print("File Name:",file2_name)
             print("="*45)
         else:
             print("No problem!")
@@ -152,9 +177,9 @@ while True:
     elif choice1 ==  3:
         print("\nExiting",end="")   
         
-        for k in range(3):
+        for k in range(5):
             print(".",end="")
-            time.sleep(1) 
+            time.sleep(0.15) 
         break
     
     else:
