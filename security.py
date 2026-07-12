@@ -44,6 +44,14 @@ while True:
     
     #------Main program --------
     
+    red="\033[91m"
+    green="\033[92m"
+    yellow="\033[93m"
+    blue="\033[94m"
+    purple="\033[95m"
+    reset="\033[0m"
+    
+    
     print("\n> Scans directory for Important files(exe/txt/log/.....):-")
     print("[1] Scans Current directory:")
     print("[2] Scans Custom Directory:")
@@ -53,7 +61,7 @@ while True:
     try:
      choice1=int(input("Enter your choice:"))
     except ValueError:
-        print("[$] Only numeric value")
+        print(yellow + "[!] Only numeric value" + reset)
         continue
     
     if choice1 == 1:
@@ -62,7 +70,7 @@ while True:
         scan=['|','/','-','\\']
         
         for i in range(10):
-            print("\rScanning current Directory",scan[i%len(scan)],end="",flush=True)
+            print("\r" + purple + "Scanning current Directory" + reset,scan[i%len(scan)],end="",flush=True)
             time.sleep(1)
         
         count=1
@@ -73,9 +81,10 @@ while True:
             if file.endswith(".txt") or file.endswith(".log") or file.endswith(".pdf") or file.endswith(".docx") or file.endswith(".exe") or file.endswith(".bat") or file.endswith(".ps1"):
                 size=os.path.getsize(file)
                 loc=os.path.abspath(file)
-                save=f""" [{count}] Name:{file} \n 
+                save=f"""{green}
+                \n[{count}] Name:{file} \n 
                 Size : {size} Bytes \n
-                Location : {loc}"""
+                Location : {loc} {reset}"""
                 print("\n",save)
                 
                 report+=save
@@ -84,13 +93,13 @@ while True:
                 s_count+=1
                 
         if s_count == 0:
-                print("No file found!")
-        print("Total file scanned ",len(files))
-        print("Total evidence/important file found:-",s_count)
+                print(red + "[!] No file found!" + reset)
+        print(blue + "Total file scanned " + reset,len(files))
+        print(blue + "Total evidence/important file found:-" +reset ,s_count)
         try:
-         choice2=str(input("Want to save you scan reports (Y/n)?")).lower()
+         choice2=str(input(yellow + "Want to save you scan reports (Y/n)?" + reset)).lower()
         except ValueError:
-           print("only enter Y/N") 
+           print(yellow + "[$] Only enter Y/N" + reset) 
    
         
         if choice2 == "y":
@@ -123,7 +132,7 @@ while True:
         scan=['|','/','-','\\']
         
         for i in range(10):
-            print("\rScanning custom Directory",scan[i%len(scan)],end="",flush=True)
+            print("\r" + purple + "Scanning custom Directory" + reset ,scan[i%len(scan)],end="",flush=True)
             time.sleep(1)
             
         count1=1
@@ -136,11 +145,12 @@ while True:
               loc1=os.path.abspath(filex)
               name,ext=os.path.splitext(filex)
               
-              save1=f"""[{count1}] Name:{filex} \n
+              save1=f"""{green}
+              [{count1}] Name:{filex} \n
               Size : {size1} Bytes \n
               Extension : {ext}
               Location : {loc1}
-              
+              {reset}
               """
               print(save1)
               
@@ -149,13 +159,13 @@ while True:
               report1+=save1
         
         if s_count2 == 0:
-            print("No File found!")
-        print("Total file scanned:-",len(file_2))
-        print("Total evidence/Important Found!:-",s_count2)
+            print(red + "[!] Error : No File found!" + reset)
+        print(blue + "Total file scanned:-" + reset,len(file_2))
+        print(blue + "Total evidence/Important Found!:-" + reset,s_count2)
         try:
-         choicex=str(input("Want to save the file (y/n)?:-")).lower()
+         choicex=str(input(green + "Want to save the file (y/n)?:-" + reset)).lower()
         except ValueError:
-            print("Enter y/n only!")
+            print(yellow + "Enter y/n only!" + reset)
             
         if choicex == "y":
             try:
@@ -168,19 +178,19 @@ while True:
             file2.write(report1)
             file2.close()
             print("="*45)
-            print("Report saved successfully!")
+            print(green + "Report saved successfully!" + reset)
             print("File Name:",file2_name)
             print("="*45)
         else:
             print("No problem!")
     
     elif choice1 ==  3:
-        print("\nExiting",end="")   
+        print(blue + "Exiting" + reset,end="",flush=True)   
         
         for k in range(5):
-            print(".",end="")
+            print(blue + "." + reset,end="", flush=True)
             time.sleep(0.15) 
         break
     
     else:
-        print("Enter valid option!")          
+        print(red + "Enter valid option!" + reset)          
