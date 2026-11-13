@@ -1,109 +1,45 @@
 # Security Evidence Collector
 
-A Python-based command-line utility that scans a directory for predefined evidence file types and generates a structured report containing file metadata. This project was developed as a learning exercise in Python automation while applying concepts commonly used in digital forensics and incident response (DFIR).
+**A shallow file-metadata inventory exercise for DFIR learning.**
 
----
+This Python CLI lists files with selected extensions in the current or a chosen
+directory, displays name/size/path, and can save a text report. It does not
+acquire forensic images, prove evidence integrity or implement chain of custody.
 
-## Overview
+## Run
 
-During security investigations, analysts often need to quickly identify files that may contain useful evidence. Manually searching through directories is repetitive and time-consuming.
+Python 3 and its standard library are sufficient.
 
-Security Evidence Collector automates this process by scanning a selected directory, identifying evidence-related file types, collecting basic metadata, and optionally generating a report.
+```sh
+git clone https://github.com/Yuvraj-26-k/security-evidence-collector.git
+cd security-evidence-collector
+python security.py
+```
 
-This project focuses on building practical Python skills while following a real-world cybersecurity use case.
+Choose `1` for the current directory or `2` for a custom path. Start with a
+disposable folder of synthetic `.txt`/`.log` files. Choose a unique output
+filename such as `inventory-demo.txt`; existing files can be overwritten.
 
----
+## What it collects
 
-## Features
+Supported, case-sensitive suffixes are `.txt`, `.log`, `.pdf`, `.docx`, `.exe`,
+`.bat` and `.ps1`. Collection is non-recursive and reports metadata only. The
+program changes its working directory for custom scans; relative output paths
+follow that selected directory.
 
-- Scan the current working directory
-- Scan a custom directory
-- Detect common evidence file types
-  - `.txt`
-  - `.log`
-  - `.pdf`
-  - `.docx`
-  - `.exe`
-  - `.bat`
-  - `.ps1`
-- Display:
-  - File Name
-  - File Extension
-  - File Size
-  - Absolute File Path
-- Generate investigation reports
-- Save reports with a custom filename
-- Interactive command-line interface
-- Basic exception handling for invalid user input
+## Limitations
 
----
+There is no hashing, content analysis, provenance record or integrity guarantee.
+Regular-file and permission handling need improvement. Reports can contain ANSI
+color codes and absolute machine paths. Do not use valuable source/evidence
+folders for experiments or publish reports containing private paths/data.
 
-## Technologies Used
+![Historical terminal interface demonstration](security.png)
 
-- Python 3
-- os Module
-- File Handling
-- Exception Handling
+The existing screenshot shows an earlier interface run and is not proof of a
+validated forensic workflow. The repository contains `security.py`, this guide
+and that screenshot. No first-party tests are tracked.
 
----
-
-## Sample Workflow
-
-1. Launch the application.
-2. Choose whether to scan the current directory or a custom directory.
-3. The application scans for supported evidence files.
-4. Review the collected metadata.
-5. Choose whether to save the generated report.
-
----
-
-## Learning Objectives
-
-This project was created to strengthen understanding of:
-
-- Python fundamentals
-- Directory traversal
-- File handling
-- User input validation
-- Exception handling
-- Basic cybersecurity automation
-
----
-
-## Current Limitations
-
-This project intentionally keeps the implementation simple for learning purposes.
-
-Current limitations include:
-
-- Scans only the selected directory (no recursive scanning)
-- Supports a limited number of file extensions
-- Generates plain text reports only
-- Does not calculate file hashes
-- No logging functionality
-
----
-
-## Future Improvements
-
-- Recursive directory scanning
-- SHA-256 and MD5 hash generation
-- CSV and JSON report export
-- Timestamp collection
-- Logging support
-- Refactor using functions and modular design
-- Graphical user interface (GUI)
-
----
-
-## Disclaimer
-
-This project is intended for educational purposes only and demonstrates basic Python automation techniques in the context of digital forensics and incident response.
-
----
-
-## Author
-
-**Yuvraj Singh**
-
-Cybersecurity Student | Python Automation | Ethical Hacking
+Next priorities are reusable functions, regular-file checks, robust errors,
+create-only structured output and synthetic tests. Source/history remain in
+this repository; no consolidation is performed by the documentation update.
